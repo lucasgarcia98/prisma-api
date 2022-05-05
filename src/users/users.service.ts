@@ -14,7 +14,6 @@ export class UsersService {
   }
 
   findAll() {
-    // throw new UnauthorizedError('Não autorizado');
     return this.repository.findAll();
   }
 
@@ -28,11 +27,23 @@ export class UsersService {
     return user;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return this.repository.update(id, updateUserDto);
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const user = await this.repository.update(id, updateUserDto);
+
+    if (!user) {
+      throw new NotFoundError('Usuario nao encontrado');
+    }
+
+    return user;
   }
 
-  remove(id: number) {
-    return this.repository.remove(id);
+  async remove(id: number) {
+    const user = await this.repository.remove(id);
+
+    if (!user) {
+      throw new NotFoundError('Usuario nao encontrado');
+    }
+
+    return user;
   }
 }

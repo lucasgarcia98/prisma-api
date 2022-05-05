@@ -1,4 +1,5 @@
 import {
+  IsBoolean,
   IsEmail,
   IsNotEmpty,
   IsNumber,
@@ -17,4 +18,8 @@ export class CreatePostDto {
 
   @IsNumber()
   authorId: number;
+
+  @IsBoolean()
+  @IsOptional()
+  published?: boolean;
 }
