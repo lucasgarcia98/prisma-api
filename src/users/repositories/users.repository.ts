@@ -31,6 +31,11 @@ export class UsersRepository {
             createdAt: true,
           },
         },
+        messages: {
+          select: {
+            message: true,
+          },
+        },
       },
     });
   }
